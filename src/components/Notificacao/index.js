@@ -27,7 +27,6 @@ export default function Notificacao({ date }) {
   function handleClose(bool) {
     setOpen(bool);
   }
-  console.log(agendamentos);
 
   useEffect(() => {
     const dataAgendamento = format(date, "yyyy-MM-dd HH:mm:ss");

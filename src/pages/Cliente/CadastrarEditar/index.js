@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 import Layout from "../../../components/Layout";
 import Mensagem from "../../../components/Mensagem";
 
+import api from "../../../services/api";
+
 import ContainerBasico from "../../../components/Layout/PlanoFundo";
 
 import { Content, Container, Label } from "./styles";
@@ -35,11 +37,20 @@ const status = [
 ];
 
 export default function CadastrarEditar() {
-  const [abrirMensagem, setAbrirMensagem] = useState(true);
-  const [mensagem, setMensagem] = useState("Teste 123");
-  const [tipo, setTipo] = useState("error");
-  function handleSubmit(data) {
-    console.log(data);
+  const [abrirMensagem, setAbrirMensagem] = useState(false);
+  const [mensagem, setMensagem] = useState();
+  const [tipo, setTipo] = useState();
+
+  async function handleSubmit(data, { reset }) {
+    const cliente = await api.post("/cliente", data);
+    setAbrirMensagem(true);
+    setMensagem(cliente.data);
+    setTipo("success");
+    reset();
+  }
+
+  function handleClose(bool) {
+    setAbrirMensagem(bool);
   }
 
   return (
@@ -52,6 +63,7 @@ export default function CadastrarEditar() {
               tipo={tipo}
               abrirMensagem={abrirMensagem}
               mensagem={mensagem}
+              callbackParent={(bool) => handleClose(bool)}
             />
             <h3>Geral</h3>
             <Form onSubmit={handleSubmit}>
@@ -253,7 +265,7 @@ export default function CadastrarEditar() {
                   Salvar
                 </Button>
               </DialogActions>
-              <Link to="/paciente">
+              <Link to="/clientes">
                 <Button
                   variant="outlined"
                   color="default"

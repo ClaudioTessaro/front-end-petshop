@@ -12,11 +12,15 @@ export default function RouteWrapper({
   const { signed } = true;
 
   if (!signed && isPrivate) {
-    return <Redirect to="/" />;
+    return <Redirect to="/clientes" />;
   }
 
   if (signed && !isPrivate) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/clientes" />;
+  }
+
+  if (signed && isPrivate) {
+    return <Redirect to="/clientes" />;
   }
 
   const Layout = signed ? DefaultLayout : DefaultLayout;

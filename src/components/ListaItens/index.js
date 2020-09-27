@@ -3,7 +3,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
-import DashboardIcon from "@material-ui/icons/Dashboard";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import { Link } from "react-router-dom";
 
@@ -11,14 +10,6 @@ import AssignmentIcon from "@material-ui/icons/Assignment";
 
 export const mainListItems = (
   <div>
-    <Link to="/dashboard">
-      <ListItem button>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <ListItemText primary="Principal" as={Link} to="/dashboard" />
-      </ListItem>
-    </Link>
     <Link to="/clientes">
       <ListItem button>
         <ListItemIcon>

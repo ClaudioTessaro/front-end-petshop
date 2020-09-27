@@ -10,12 +10,12 @@ import SearchIcon from "@material-ui/icons/Search";
 import Layout from "../../../components/Layout";
 import ListarClientes from "../../../components/ListarClientes";
 
+import api from "../../../services/api";
+
 import { ButtonPosition, BuscaPosition } from "./styles";
 
 export default function VisualizarPacientes() {
-  function handleSubmit(data) {
-    console.log(data);
-  }
+  function handleSubmit(data) {}
 
   return (
     <Layout>
