@@ -9,14 +9,14 @@ import { signUpRequest } from "../../store/modules/auth/actions";
 export default function SignUp() {
   const dispatch = useDispatch();
 
-  function handleSubmit({ name, email, password }) {
-    dispatch(signUpRequest(name, email, password));
+  function handleSubmit({ nome, email, password }) {
+    dispatch(signUpRequest(nome, email, password));
   }
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
-        <Input name="name" type="text" placeholder="Nome completo" />
+      <Form onSubmit={handleSubmit} style={{ height: 500 }}>
+        <Input name="nome" type="text" placeholder="Nome completo" />
         <Input name="email" type="email" placeholder="Seu e-mail" />
         <Input
           name="password"

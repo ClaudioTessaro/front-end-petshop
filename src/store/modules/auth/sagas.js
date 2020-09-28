@@ -28,11 +28,11 @@ export function* signIn({ payload }) {
 }
 
 export function* signUp({ payload }) {
-  const { name, email, password } = payload;
+  const { nome, email, password } = payload;
 
   try {
-    yield call(api.post, "users", {
-      name,
+    yield call(api.post, "register", {
+      nome,
       email,
       password,
       provider: true,
