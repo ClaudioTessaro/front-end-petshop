@@ -4,3 +4,10 @@ export function postRequest(id) {
     id,
   };
 }
+
+export function getRequest(id) {
+  return {
+    type: "@servico/GET_REQUEST",
+    id,
+  };
+}

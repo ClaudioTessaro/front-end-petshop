@@ -33,6 +33,11 @@ export default function ListarPacientes() {
   function handleServicos(id) {
     dispatch(actions.postRequest(id));
   }
+
+  function handlegetServicos(id) {
+    dispatch(actions.getRequest(id));
+  }
+
   useEffect(() => {
     async function buscarClientes() {
       const clientes = await api.get("/cliente");
@@ -52,6 +57,7 @@ export default function ListarPacientes() {
                   style={{
                     backgroundColor: deepPurple[500],
                   }}
+                  onClick={() => handlegetServicos(cliente._id)}
                 >
                   {cliente.nome.substring(0, 2).toUpperCase()}
                 </Avatar>

@@ -5,6 +5,7 @@ import Route from "./Route";
 import VisualizarClientes from "../pages/Cliente/VisualizarClientes";
 import CadastrarEditar from "../pages/Cliente/CadastrarEditar";
 import CadastrarEditarServicos from "../pages/Servicos/CadastrarEditar";
+import VisualizarServicos from "../pages/Servicos/VisualizarServicos";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 
@@ -18,6 +19,11 @@ export default function Routes() {
       <Route
         path="/cadastrarServico/:id"
         component={CadastrarEditarServicos}
+        isPrivate
+      />
+      <Route
+        path="/visualizarServico/:id"
+        component={VisualizarServicos}
         isPrivate
       />
     </Switch>

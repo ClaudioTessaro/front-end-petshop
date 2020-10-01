@@ -12,6 +12,10 @@ export default function servico(state = INITIAL_STATE, action) {
         draft.id = action.id;
         break;
       }
+      case "@servico/GET_REQUEST": {
+        draft.id = action.id;
+        break;
+      }
       default:
         return state;
     }

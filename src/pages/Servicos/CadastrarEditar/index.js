@@ -54,7 +54,7 @@ export default function CadastrarEditar(path) {
   return (
     <Layout>
       <h1>Adicionar Serviços</h1>
-      <ContainerBasico style={{ height: 10 }}>
+      <ContainerBasico>
         <Content>
           <Container>
             <h3>Geral</h3>
