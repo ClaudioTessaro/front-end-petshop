@@ -43,6 +43,7 @@ export default function CadastrarEditar(path) {
 
   useEffect(() => {
     buscarPet(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function handleSubmit(data, { reset }) {
