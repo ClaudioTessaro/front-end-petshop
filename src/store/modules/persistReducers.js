@@ -6,7 +6,7 @@ export default (reducers) => {
     {
       key: "petshop",
       storage,
-      whitelist: ["auth", "user"],
+      whitelist: ["auth", "cliente"],
     },
     reducers
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -9,11 +10,12 @@ import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
 import { mainListItems, secondaryListItems } from "../ListaItens";
+
+import { signOut } from "../../store/modules/auth/actions";
 
 const drawerWidth = 200;
 
@@ -98,6 +100,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Header({ children }) {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -106,6 +109,10 @@ export default function Header({ children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  function handleLogout() {
+    dispatch(signOut());
+  }
 
   return (
     <div className={classes.root}>
@@ -134,10 +141,8 @@ export default function Header({ children }) {
             noWrap
             className={classes.title}
           />
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
+          <IconButton onClick={handleLogout}>
+            <ExitToAppOutlinedIcon />
           </IconButton>
         </Toolbar>
       </AppBar>

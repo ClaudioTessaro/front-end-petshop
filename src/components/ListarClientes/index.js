@@ -4,19 +4,35 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import { deepPurple } from "@material-ui/core/colors";
-import PageviewIcon from "@material-ui/icons/Pageview";
 import AssignmentIcon from "@material-ui/icons/Assignment";
-import { MdDateRange, MdEmail, MdPhone } from "react-icons/md";
+import {
+  MdDateRange,
+  MdEmail,
+  MdPhone,
+  MdPets,
+  MdDeleteSweep,
+} from "react-icons/md";
+import { useDispatch } from "react-redux";
 
 import api from "../../services/api";
 
-import { green, pink } from "@material-ui/core/colors";
+import { pink } from "@material-ui/core/colors";
 
 import { Container, CardPosition, TitlePosition } from "./styles";
+import * as actions from "../../store/modules/cliente/action";
 
 export default function ListarPacientes() {
+  const dispatch = useDispatch();
   const [client, setClient] = useState([]);
 
+  async function handleDelete(id) {
+    await api.delete(`/cliente/${id}`);
+    window.location.reload(true);
+  }
+
+  function handleServicos(id) {
+    dispatch(actions.postRequest(id));
+  }
   useEffect(() => {
     async function buscarClientes() {
       const clientes = await api.get("/cliente");
@@ -49,9 +65,24 @@ export default function ListarPacientes() {
                 <span>{cliente.email}</span>
               </Typography>
               <Typography color="textSecondary" style={{ fontSize: 15 }}>
+                <MdPets style={{ marginRight: 10, marginTop: 5 }} />
+                <span>{cliente.pet}</span>
+              </Typography>
+              <Typography color="textSecondary" style={{ fontSize: 15 }}>
                 <MdPhone style={{ marginRight: 10, marginTop: 5 }} />
                 <span>{cliente.telefone}</span>
               </Typography>
+              <div style={{ display: "flex", float: "left", marginTop: 30 }}>
+                <button
+                  type="button"
+                  style={{ backgroundColor: "white", border: 0 }}
+                >
+                  <MdDeleteSweep
+                    size={20}
+                    onClick={() => handleDelete(cliente._id)}
+                  />
+                </button>
+              </div>
               <div style={{ display: "flex", float: "right", marginTop: 30 }}>
                 <Avatar
                   style={{
@@ -63,29 +94,25 @@ export default function ListarPacientes() {
                 >
                   <MdDateRange />
                 </Avatar>
-
-                <Avatar
-                  style={{
-                    height: 25,
-                    width: 25,
-                    marginLeft: 10,
-                    color: "#fff",
-                    backgroundColor: pink[500],
-                  }}
+                <button
+                  type="button"
+                  style={{ backgroundColor: "white", border: 0 }}
                 >
-                  <AssignmentIcon />
-                </Avatar>
-                <Avatar
-                  style={{
-                    height: 25,
-                    width: 25,
-                    marginLeft: 10,
-                    color: "#fff",
-                    backgroundColor: green[500],
-                  }}
-                >
-                  <PageviewIcon />
-                </Avatar>
+                  <Avatar
+                    style={{
+                      height: 25,
+                      width: 25,
+                      marginLeft: 10,
+                      color: "#fff",
+                      backgroundColor: pink[500],
+                    }}
+                  >
+                    <AssignmentIcon
+                      titleAccess="Cadastrar Serviços"
+                      onClick={() => handleServicos(cliente._id)}
+                    />
+                  </Avatar>
+                </button>
               </div>
             </CardContent>
           </Card>

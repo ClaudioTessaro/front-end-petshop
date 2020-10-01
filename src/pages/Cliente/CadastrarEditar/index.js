@@ -55,7 +55,7 @@ export default function CadastrarEditar() {
 
   return (
     <Layout>
-      <h1>Adicionar Paciente</h1>
+      <h1>Adicionar Cliente</h1>
       <ContainerBasico props={abrirMensagem}>
         <Content>
           <Container>
@@ -69,13 +69,28 @@ export default function CadastrarEditar() {
             <Form onSubmit={handleSubmit}>
               <Grid container spacing={4}>
                 <Grid container item xs={4}>
-                  <Label>Nome do Paciente</Label>
+                  <Label>Nome do Cliente</Label>
                   <TextField
                     id="outlined-full-width"
                     placeholder="Digite o nome do Paciente"
                     variant="outlined"
                     type="text"
                     name="nome"
+                    margin="dense"
+                    style={{
+                      width: "50ch",
+                    }}
+                    required
+                  />
+                </Grid>
+                <Grid container item xs={2}>
+                  <Label>Nome do Pet</Label>
+                  <TextField
+                    id="outlined-full-width"
+                    placeholder="Digite o nome do Pet"
+                    variant="outlined"
+                    type="text"
+                    name="pet"
                     margin="dense"
                     style={{
                       width: "50ch",
