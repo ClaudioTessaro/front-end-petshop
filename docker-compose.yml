@@ -1,0 +1,21 @@
+version: '3.6'
+services:
+ frontend:
+   image: app_frontend
+   depends_on: 
+    - backend
+   ports:
+     - "3000:80"
+   environment:
+     - REACT_APP_URL_BACKEND=https://disciplina-petshop.herokuapp.com/
+ backend:
+   image: app_backend
+   depends_on: 
+    - banco_de_dados
+   environment:
+     - DATABASE_URL=mongodb://banco_de_dados/spotilist
+     - PORTA=5000
+   ports:
+     - "5000:5000"
+ banco_de_dados:
+   image: mongo

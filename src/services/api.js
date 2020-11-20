@@ -1,7 +1,8 @@
 import axios from "axios";
+require('dotenv').config({path: '../../.env'})
 
 const api = axios.create({
-  baseURL: "https://disciplina-petshop.herokuapp.com/",
+  baseURL: process.env.REACT_APP_URL_BACKEND,
 });
 
 export default api;
